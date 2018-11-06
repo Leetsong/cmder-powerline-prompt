@@ -37,7 +37,7 @@ Download the `.lua` files, and place it in `%CMDER_ROOT%/config` folder.
 Restart Cmder to load the prompt.
 
 **Alternatively**, if you want to maintain link with the original repo, you can clone this repo into any folder  
-`git clone https://github.com/AmrEldib/cmder-powerline-prompt.git git-repo-folder-name`  
+`git clone https://github.com/Leetsong/cmder-powerline-prompt.git git-repo-folder-name`  
 then create a symbolic link from the `%CMDER_ROOT%/config` folder to the `.lua` file.
 
 ```bat
