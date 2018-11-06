@@ -13,10 +13,13 @@ end
  -- add python virutual env name 
 ---
 function conda_prompt_filter()
-    -- add in python virtual env name
     local python_env = get_virtual_env('DEFAULT_ENV')
     if python_env then
+        -- add in python virtual env name
         plc_prompt_lambSymbol = "["..python_env.."] λ"
+    else
+        -- reset to original name
+        plc_prompt_lambSymbol = "λ"
     end
 end
 
@@ -24,10 +27,13 @@ end
  -- add virtual env name 
 ---
 function venv_prompt_filter()
-    -- add in virtual env name
     local venv = get_virtual_env('VIRTUAL_ENV')
     if venv then
+        -- add in python virtual env name
         plc_prompt_lambSymbol = "["..venv.."] λ"
+    else
+        -- reset to original name
+        plc_prompt_lambSymbol = "λ"
     end
 end
 
