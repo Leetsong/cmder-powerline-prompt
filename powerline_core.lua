@@ -97,28 +97,33 @@ currentTextColor = colorWhite.foreground
 -- Constants
 -- Symbols
 newLineSymbol = "\n"
-
 -- Default symbols
 -- Some symbols are required. If the user fails to provide them in the config file, they're created here
 -- Prompt displayed instead of user's home folder e.g. C:\Users\username
-if not plc_prompt_homeSymbol then 
-	plc_prompt_homeSymbol = "~"
-end 
+defaultPlcPromptHomeSymbol = "~"
 -- Symbol connecting each segment of the prompt. Be careful before you change this.
-if not plc_prompt_arrowSymbol then
-	plc_prompt_arrowSymbol = ""
-end
+defaultPlcPromptArrowSymbol = ""
 -- Symbol displayed in the new line below the prompt.
-if not plc_prompt_lambSymbol then
-	plc_prompt_lambSymbol = "λ"
-end
+defaultPlcPromptLambSymbol = "λ"
 -- Version control (e.g. Git) branch symbol. Used to indicate the name of a branch.
-if not plc_git_branchSymbol then
-	plc_git_branchSymbol = ""
-end 
+defaultPlcGitBranchSymbol = ""
 -- Version control (e.g. Git) conflict symbol. Used to indicate there's a conflict.
+defaultPlcGitConflictSymbol = "!"
+
+if not plc_prompt_homeSymbol then 
+	plc_prompt_homeSymbol = defaultPlcPromptHomeSymbol
+end 
+if not plc_prompt_arrowSymbol then
+	plc_prompt_arrowSymbol = defaultPlcPromptArrowSymbol
+end
+if not plc_prompt_lambSymbol then
+	plc_prompt_lambSymbol = defaultPlcPromptLambSymbol
+end
+if not plc_git_branchSymbol then
+	plc_git_branchSymbol = defaultPlcGitBranchSymbol
+end 
 if not plc_git_conflictSymbol then
-	plc_git_conflictSymbol = "!"
+	plc_git_conflictSymbol = defaultPlcGitConflictSymbol
 end
 
 ---
@@ -188,6 +193,20 @@ function addSegment(text, textColor, fillColor)
 	-- Update clink prompt
 	clink.prompt.value = newPrompt
 end 
+
+---
+-- set the plc prompt lamb symbol with specificed condition.
+-- cond {bool} The new symbol is set when cond is true.
+-- newSymbol {string} The new symbol to be set.
+-- @return {nil} The prompt lamb symbol is reset with the new symbol.
+---
+function setPlcPromptLambSymbol(cond, newSymbol)
+	if cond then
+		plc_prompt_lambSymbol = newSymbol
+	else
+		plc_prompt_lambSymbol = defaultPlcPromptLambSymbol
+	end
+end
 
 ---
 -- Resets the prompt and all state variables
